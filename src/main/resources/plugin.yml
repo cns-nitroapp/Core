@@ -1,0 +1,7 @@
+name: Core
+version: ${project.version}
+main: de.constellate.nitroapp.Main
+api-version: 1.17
+authors: [ DominikGralka ]
+description: Nitroapp-Core for Minecraft
+website: nitroapp.de
