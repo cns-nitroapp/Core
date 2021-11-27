@@ -5,3 +5,7 @@ api-version: 1.17
 authors: [ DominikGralka ]
 description: Nitroapp-Core for Minecraft
 website: nitroapp.de
+
+commands:
+  test:
+    description: A simple test command.
