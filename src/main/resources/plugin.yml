@@ -9,3 +9,11 @@ website: nitroapp.de
 commands:
   test:
     description: A simple test command.
+  backpack:
+    description: A useful 9 slot backpack.
+    aliases: [bp, b]
+  balance:
+    description: General economical query command.
+    aliases: [bal, money]
+  pay:
+    description: Send money to your pals.
