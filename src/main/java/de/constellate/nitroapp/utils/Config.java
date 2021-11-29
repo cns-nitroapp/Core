@@ -36,6 +36,7 @@ public class Config {
 
     public void set(String path, Object value) {
         config.set(path, value);
+        save();
     }
 
     public YamlConfiguration getConfig() {

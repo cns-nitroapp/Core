@@ -1,14 +1,9 @@
 package de.constellate.nitroapp;
 
 import de.constellate.nitroapp.backpack.BackpackManager;
-import de.constellate.nitroapp.commands.BackpackCommand;
-import de.constellate.nitroapp.commands.BalanceCommand;
-import de.constellate.nitroapp.commands.PayCommand;
-import de.constellate.nitroapp.commands.TestCommand;
-import de.constellate.nitroapp.listeners.BlockBreakListener;
-import de.constellate.nitroapp.listeners.ChatListener;
-import de.constellate.nitroapp.listeners.JoinListener;
-import de.constellate.nitroapp.listeners.QuitListener;
+import de.constellate.nitroapp.commands.*;
+import de.constellate.nitroapp.listeners.*;
+import de.constellate.nitroapp.tablist.TablistManager;
 import de.constellate.nitroapp.utils.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,6 +18,7 @@ public final class Main extends JavaPlugin {
     private static Main instance;
     private Config config;
     private BackpackManager backpackManager;
+    private TablistManager tablistManager;
 
     @Override
     public void onLoad() {
@@ -38,6 +34,7 @@ public final class Main extends JavaPlugin {
         commandRegistration();
 
         backpackManager = new BackpackManager();
+        tablistManager = new TablistManager();
 
     }
 
@@ -60,6 +57,8 @@ public final class Main extends JavaPlugin {
         return backpackManager;
     }
 
+    public TablistManager getTablistManager() { return tablistManager; }
+
     public static String getPrefix() {
         return ChatColor.BLUE + "System " + ChatColor.DARK_GRAY + "┃ " + ChatColor.GRAY;
     }
@@ -70,6 +69,8 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new QuitListener(), this);
         pluginManager.registerEvents(new ChatListener(), this);
         pluginManager.registerEvents(new BlockBreakListener(), this);
+        pluginManager.registerEvents(new ServerListPingListener(), this);
+        pluginManager.registerEvents(new PlayerLoginListener(), this);
     }
 
     private void commandRegistration() {
@@ -77,5 +78,12 @@ public final class Main extends JavaPlugin {
         getCommand("backpack").setExecutor(new BackpackCommand());
         getCommand("balance").setExecutor(new BalanceCommand());
         getCommand("pay").setExecutor(new PayCommand());
+        getCommand("sell").setExecutor(new SellCommand());
+        getCommand("value").setExecutor(new ValueCommand());
+        getCommand("waypoint").setExecutor(new WaypointCommand());
+        getCommand("tp").setExecutor(new TeleportCommand());
+        getCommand("tpaccept").setExecutor(new TpacceptCommand());
+        getCommand("maintenance").setExecutor(new MaintenanceCommand());
+        getCommand("broadcast").setExecutor(new BroadcastCommand());
     }
 }

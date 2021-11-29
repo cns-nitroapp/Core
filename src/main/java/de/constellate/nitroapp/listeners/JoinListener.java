@@ -37,6 +37,9 @@ public class JoinListener implements Listener {
             config.getConfig().set("player.balance." + player.getUniqueId(), 0);
         }
 
+        Main.getInstance().getTablistManager().setPlayerList(player);
+        Main.getInstance().getTablistManager().setAllPlayerTeams();
+
         player.sendMessage(" ");
         player.sendMessage(ChatColor.DARK_GRAY + "»" + ChatColor.GRAY + " Welcome to " + ChatColor.GREEN + "Nitroapp Remastered");
         player.sendMessage(ChatColor.DARK_GRAY + "»" + ChatColor.GRAY + " Running on " + ChatColor.GREEN + "Core v1");

@@ -31,7 +31,7 @@ public class BlockBreakListener implements Listener {
 
             BalanceCommand.setBalance(player.getUniqueId(), player_balance + 1);
 
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "Block mined" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.GREEN + "+1 ⛃"));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "Block mined" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.GOLD + "+1 ⛃"));
             config.save();
         }
 

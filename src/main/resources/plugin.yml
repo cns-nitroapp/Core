@@ -17,3 +17,21 @@ commands:
     aliases: [bal, money]
   pay:
     description: Send money to your pals.
+  sell:
+    description: Sell the item you are currently holding.
+  value:
+    description: Get the value of an item.
+    aliases: [val, price]
+  waypoint:
+    description: Creates or teleports yourself to a waypoint.
+    aliases: [wp, way]
+  tp:
+    description: A custom teleport command.
+    aliases: [teleport, tpa]
+  tpaccept:
+    description: Accepts a teleportation request
+  maintenance:
+    permission: core.maintenance
+  broadcast:
+    permission: core.broadcast
+    aliases: [bc]
