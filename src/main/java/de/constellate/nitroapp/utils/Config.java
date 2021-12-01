@@ -10,14 +10,14 @@ public class Config {
     private final File file;
     private final YamlConfiguration config;
 
-    public Config() {
+    public Config(String filename) {
         File dir = new File("./plugins/Core/");
 
         if (!dir.exists()) {
             dir.mkdirs();
         }
 
-        this.file = new File(dir, "config.yml");
+        this.file = new File(dir, filename + ".yml");
 
         if (!file.exists()) {
             try {

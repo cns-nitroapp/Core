@@ -17,13 +17,15 @@ public final class Main extends JavaPlugin {
 
     private static Main instance;
     private Config config;
+    private Config vendor;
     private BackpackManager backpackManager;
     private TablistManager tablistManager;
 
     @Override
     public void onLoad() {
         instance = this;
-        config = new Config();
+        config = new Config("config");
+        //vendor = new Config("vendor");
     }
 
     @Override
@@ -63,6 +65,10 @@ public final class Main extends JavaPlugin {
         return ChatColor.BLUE + "System " + ChatColor.DARK_GRAY + "┃ " + ChatColor.GRAY;
     }
 
+    public static String getGuiSuffix() {
+        return ChatColor.DARK_GRAY + " [" + ChatColor.GREEN + "Core" + ChatColor.DARK_GRAY + "]";
+    }
+
     private void listenerRegistration() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new JoinListener(), this);
@@ -71,6 +77,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockBreakListener(), this);
         pluginManager.registerEvents(new ServerListPingListener(), this);
         pluginManager.registerEvents(new PlayerLoginListener(), this);
+        pluginManager.registerEvents(new InventoryListener(), this);
     }
 
     private void commandRegistration() {
@@ -85,5 +92,6 @@ public final class Main extends JavaPlugin {
         getCommand("tpaccept").setExecutor(new TpacceptCommand());
         getCommand("maintenance").setExecutor(new MaintenanceCommand());
         getCommand("broadcast").setExecutor(new BroadcastCommand());
+        getCommand("vendor").setExecutor(new VendorCommand());
     }
 }
