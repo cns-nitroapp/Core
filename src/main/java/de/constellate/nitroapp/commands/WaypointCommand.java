@@ -36,10 +36,10 @@ public class WaypointCommand implements CommandExecutor {
                     if (!(args[1] == null)) {
                         int balance = BalanceCommand.getBalance(player.getUniqueId());
 
-                        if (balance >= 50000) {
+                        if (balance >= 500000) {
                             waypoint.setWaypoint(player.getUniqueId(), args[1], player.getLocation());
-                            BalanceCommand.setBalance(player.getUniqueId(),BalanceCommand.getBalance(player.getUniqueId()) - 50000);
-                            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "Waypoint created" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.RED + "-50000 ⛃"));
+                            BalanceCommand.setBalance(player.getUniqueId(),BalanceCommand.getBalance(player.getUniqueId()) - 500000);
+                            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "Waypoint created" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.RED + "-500000 ⛃"));
                             player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1, 1);
                             player.sendMessage(Main.getPrefix() + "Waypoint " + ChatColor.GREEN + args[1] + ChatColor.GRAY + " has been created!");
                         } else {
@@ -84,7 +84,7 @@ public class WaypointCommand implements CommandExecutor {
 
         TextComponent waypointCreate = new TextComponent(Main.getPrefix() + ChatColor.GREEN + "/waypoint create <Name>" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.GRAY + "Create a public waypoint.");
         waypointCreate.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/waypoint create"));
-        waypointCreate.setHoverEvent(new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GOLD + "50000 ⛃").create()) );
+        waypointCreate.setHoverEvent(new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GOLD + "500000 ⛃").create()) );
 
         TextComponent waypointTeleport = new TextComponent(Main.getPrefix() + ChatColor.GREEN + "/waypoint <Name>" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.GRAY + "Teleport to a public waypoint.");
         waypointTeleport.setHoverEvent(new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GOLD + "100 ⛃").create()) );

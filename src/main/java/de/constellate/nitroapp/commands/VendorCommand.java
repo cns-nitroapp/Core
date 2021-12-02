@@ -2,6 +2,7 @@ package de.constellate.nitroapp.commands;
 
 import de.constellate.nitroapp.Main;
 import de.constellate.nitroapp.utils.Config;
+import de.constellate.nitroapp.utils.StringFormatter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,8 +23,9 @@ public class VendorCommand implements CommandExecutor {
             sendUsage(sender);
             return true;
         } else if (args[0].equals("set")) {
-            config.getConfig().set("item.vendor_value." + item + ".name", item.toLowerCase().substring(0, 1).toUpperCase() + item.toLowerCase().substring(1));
+            config.getConfig().set("item.vendor_value." + item + ".name", StringFormatter.capitalizeWord(item));
             config.getConfig().set("item.vendor_value." + item + ".price", Integer.parseInt(args[1]));
+            config.getConfig().set("item.vendor_value." + item + ".category", args[2] );;
             sender.sendMessage(Main.getPrefix() + ChatColor.GREEN + item + ChatColor.GRAY + " added to the vendors list at " + ChatColor.GOLD + args[1] + " ⛃");
         } else if (args[0].equals("remove")) {
             config.getConfig().set("item.vendor_value." + item, null);
