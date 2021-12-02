@@ -9,6 +9,7 @@ import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -37,21 +38,33 @@ public class InventoryListener implements Listener {
             event.setCancelled(true);
 
             PaginatedGui gui = Gui.paginated()
-                    .title(Component.text("Test" + Main.getGuiSuffix()))
+                    .title(Component.text("Villager" + Main.getGuiSuffix()))
                     .rows(6)
                     .pageSize(45)
                     .create();
 
+            Gui selection = Gui.gui()
+                    .title(Component.text("Villager" + Main.getGuiSuffix()))
+                    .rows(3)
+                    .create();
+
             // Previous item
-            gui.setItem(6, 3, ItemBuilder.from(Material.PAPER).setName("Previous").asGuiItem(e -> gui.previous()));
+            gui.setItem(6, 3, ItemBuilder.from(Material.PAPER).setName(ChatColor.GREEN + "Previous").setLore(ChatColor.GRAY + "Go back to the previous page").asGuiItem(e -> gui.previous()));
 // Next item
-            gui.setItem(6, 7, ItemBuilder.from(Material.PAPER).setName("Next").asGuiItem(e -> gui.next()));
+            gui.setItem(6, 7, ItemBuilder.from(Material.PAPER).setName(ChatColor.GREEN + "Next").setLore(ChatColor.GRAY + "Skip ahead to the next page").asGuiItem(e -> gui.next()) );
 
             for(String key : sec.getKeys(false)){
                 String name = config.getConfig().getString("item.vendor_value." + key + ".name");
+                int price = config.getConfig().getInt("item.vendor_value." + key + ".price");
+
                 System.out.println(key);
 
-                gui.addItem(new GuiItem(Material.getMaterial(key)));
+                //gui.addItem(new GuiItem(Material.getMaterial(key)));
+
+                GuiItem guiItem = ItemBuilder.from(Material.getMaterial(key)).setName(ChatColor.GREEN + name).setLore(ChatColor.GOLD + Integer.toString(price) + " ⛃").asGuiItem(e -> selection.open(p));
+                gui.addItem(guiItem);
+
+                //gui.addItem(new GuiItem(ItemBuilder.from(Material.getMaterial(key)).setName(ChatColor.GREEN + name).setLore(ChatColor.GOLD + Integer.toString(price) + " ⛃").glow().build()));
             }
 
             gui.open(p);

@@ -22,7 +22,7 @@ public class VendorCommand implements CommandExecutor {
             sendUsage(sender);
             return true;
         } else if (args[0].equals("set")) {
-            config.getConfig().set("item.vendor_value." + item + ".name", item.substring(0, 1).toUpperCase() + item.substring(1));
+            config.getConfig().set("item.vendor_value." + item + ".name", item.toLowerCase().substring(0, 1).toUpperCase() + item.toLowerCase().substring(1));
             config.getConfig().set("item.vendor_value." + item + ".price", Integer.parseInt(args[1]));
             sender.sendMessage(Main.getPrefix() + ChatColor.GREEN + item + ChatColor.GRAY + " added to the vendors list at " + ChatColor.GOLD + args[1] + " ⛃");
         } else if (args[0].equals("remove")) {
