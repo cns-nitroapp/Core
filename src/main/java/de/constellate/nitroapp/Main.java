@@ -78,6 +78,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new ServerListPingListener(), this);
         pluginManager.registerEvents(new PlayerLoginListener(), this);
         pluginManager.registerEvents(new InventoryListener(), this);
+        pluginManager.registerEvents(new PlayerDeathListener(), this);
     }
 
     private void commandRegistration() {
