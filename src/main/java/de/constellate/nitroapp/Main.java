@@ -5,8 +5,8 @@ import de.constellate.nitroapp.commands.*;
 import de.constellate.nitroapp.listeners.*;
 import de.constellate.nitroapp.tablist.TablistManager;
 import de.constellate.nitroapp.utils.Config;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -65,6 +65,18 @@ public final class Main extends JavaPlugin {
         return ChatColor.BLUE + "System " + ChatColor.DARK_GRAY + "┃ " + ChatColor.GRAY;
     }
 
+    public static String getWarningPrefix() {
+        return ChatColor.RED + "Warning " + ChatColor.DARK_GRAY + "┃ " + ChatColor.GRAY;
+    }
+
+    public static String getInfoPrefix() {
+        return ChatColor.YELLOW + "Info " + ChatColor.DARK_GRAY + "┃ " + ChatColor.GRAY;
+    }
+
+    public static String getAssistantPrefix() {
+        return ChatColor.of("#7F96FF") + "Assistant " + ChatColor.DARK_GRAY + "┃ " + ChatColor.GRAY;
+    }
+
     public static String getGuiSuffix() {
         return ChatColor.DARK_GRAY + " [" + ChatColor.GREEN + "Core" + ChatColor.DARK_GRAY + "]";
     }
@@ -79,6 +91,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new PlayerLoginListener(), this);
         pluginManager.registerEvents(new InventoryListener(), this);
         pluginManager.registerEvents(new PlayerDeathListener(), this);
+        pluginManager.registerEvents(new DropListener(), this);
     }
 
     private void commandRegistration() {
