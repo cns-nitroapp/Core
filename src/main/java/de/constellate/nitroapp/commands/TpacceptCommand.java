@@ -1,6 +1,7 @@
 package de.constellate.nitroapp.commands;
 
 import de.constellate.nitroapp.Main;
+import de.constellate.nitroapp.location.LocationManager;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -31,6 +32,7 @@ public class TpacceptCommand implements CommandExecutor {
             if (!(String.valueOf(requester.getLocation().getBlockX()) + requester.getLocation().getBlockY() + requester.getLocation().getBlockZ()).equals(String.valueOf(player.getLocation().getBlockX()) + player.getLocation().getBlockY() + player.getLocation().getBlockZ())) {
 
                 if (args[1].equals(String.valueOf(requester.getLocation().getBlockX()) + requester.getLocation().getBlockY() + requester.getLocation().getBlockZ())) {
+                    LocationManager.saveLocation(requester);
                     requester.teleport(player.getLocation());
                     sender.sendMessage(Main.getPrefix() + requester.getName() + ChatColor.GRAY + " has been teleported to your location.");
                     requester.sendMessage(Main.getPrefix() + "You have been teleported to " + player.getDisplayName() + ChatColor.GRAY + ".");

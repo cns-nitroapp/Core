@@ -12,10 +12,10 @@ public class Performance {
     public static void getPerformance() {
         double tps = Lag.getTPS();
 
-        if (tps < 19) {
+        if (tps <= 19 && tps > 18) {
             Bukkit.broadcastMessage("§8[" + ChatColor.YELLOW + "●●" + ChatColor.GRAY + "●" + "§8] " + ChatColor.YELLOW + "Slight performance issues");
             playSound();
-        } else {
+        } else if (tps < 18) {
             Bukkit.broadcastMessage("§8[" + ChatColor.RED + "●" + ChatColor.GRAY + "●●" + "§8] " + ChatColor.RED + "Moderate performance issues");
             playSound();
         }

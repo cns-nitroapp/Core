@@ -1,6 +1,7 @@
 package de.constellate.nitroapp.commands;
 
 import de.constellate.nitroapp.Main;
+import de.constellate.nitroapp.location.LocationManager;
 import de.constellate.nitroapp.utils.Config;
 import de.constellate.nitroapp.waypoints.WaypointManager;
 import net.md_5.bungee.api.ChatMessageType;
@@ -61,6 +62,7 @@ public class WaypointCommand implements CommandExecutor {
                         int z = config.getConfig().getInt("waypoints.waypoint." + world_arg + ".z");
                         Location location = new Location(world, x, y, z);
                         String wp_name = args[0];
+                        LocationManager.saveLocation(player);
                         player.teleport(location);
                         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 10, 20));
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 20 * 10, 1));

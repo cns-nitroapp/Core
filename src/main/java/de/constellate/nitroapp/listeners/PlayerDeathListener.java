@@ -1,6 +1,7 @@
 package de.constellate.nitroapp.listeners;
 
 import de.constellate.nitroapp.Main;
+import de.constellate.nitroapp.location.LocationManager;
 import de.constellate.nitroapp.utils.TimeManager;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import org.bukkit.*;
@@ -30,6 +31,7 @@ public class PlayerDeathListener implements Listener {
         Player player = event.getEntity();
 
         event.setDeathMessage(ChatColor.RED + "†" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.GRAY + player.getName());
+        LocationManager.deleteLocation(player);
 
     }
 

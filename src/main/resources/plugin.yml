@@ -37,3 +37,5 @@ commands:
     aliases: [bc]
   vendor:
     permission: core.vendor
+  back:
+    description: Teleports you back to your last location.
