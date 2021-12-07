@@ -3,12 +3,16 @@ package de.constellate.nitroapp;
 import de.constellate.nitroapp.backpack.BackpackManager;
 import de.constellate.nitroapp.commands.*;
 import de.constellate.nitroapp.listeners.*;
+import de.constellate.nitroapp.schedules.Lag;
+import de.constellate.nitroapp.schedules.Performance;
 import de.constellate.nitroapp.tablist.TablistManager;
 import de.constellate.nitroapp.utils.Config;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 
@@ -34,6 +38,7 @@ public final class Main extends JavaPlugin {
 
         listenerRegistration();
         commandRegistration();
+        schedulerRegistration();
 
         backpackManager = new BackpackManager();
         tablistManager = new TablistManager();
@@ -108,4 +113,16 @@ public final class Main extends JavaPlugin {
         getCommand("broadcast").setExecutor(new BroadcastCommand());
         getCommand("vendor").setExecutor(new VendorCommand());
     }
+
+    private void schedulerRegistration() {
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
+
+        new BukkitRunnable() {
+            public void run() {
+                Performance.getPerformance();
+            }
+        }.runTaskTimer(this, 0L, 6000L);
+
+    }
+
 }

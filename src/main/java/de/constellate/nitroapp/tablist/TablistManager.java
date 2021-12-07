@@ -1,10 +1,11 @@
 package de.constellate.nitroapp.tablist;
 
+import de.constellate.nitroapp.schedules.Lag;
+import de.constellate.nitroapp.schedules.Performance;
 import de.constellate.nitroapp.utils.TimeManager;
+import jdk.internal.perf.Perf;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameRule;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
@@ -13,13 +14,8 @@ public class TablistManager {
 
     public void setPlayerList(Player player) {
 
-        player.setPlayerListHeader(ChatColor.GREEN + "\n          » Nitroapp Remastered «          \n" + ChatColor.GRAY + "Welcome, " + player.getDisplayName() + "\n");
-
-        if (TimeManager.isWeekend()) {
-            player.setPlayerListFooter(ChatColor.GREEN + "\nKeep-Inventory is active\n" + ChatColor.DARK_GRAY + "\nremastered.nitroapp.de\n");
-        } else {
-            player.setPlayerListFooter(ChatColor.DARK_GRAY + "\nremastered.nitroapp.de\n");
-        }
+        setHeader(player);
+        setFooter(player);
 
     }
 
@@ -60,5 +56,19 @@ public class TablistManager {
         }
 
     }
+
+    public static void setFooter(Player player) {
+        if (TimeManager.isWeekend()) {
+            player.setPlayerListFooter(ChatColor.GREEN + "\nKeep-Inventory is active\n" + ChatColor.DARK_GRAY + "\nremastered.nitroapp.de\n");
+        } else {
+            player.setPlayerListFooter(ChatColor.DARK_GRAY + "\nremastered.nitroapp.de\n");
+        }
+    }
+
+    public static void setHeader(Player player) {
+        player.setPlayerListHeader(ChatColor.GREEN + "\n          » Nitroapp Remastered «          \n" + ChatColor.GRAY + "Welcome, " + Bukkit.getOnlinePlayers().iterator().next().getDisplayName() + "\n");
+    }
+
+
 
 }
