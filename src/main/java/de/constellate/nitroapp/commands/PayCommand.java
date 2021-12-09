@@ -2,6 +2,7 @@ package de.constellate.nitroapp.commands;
 
 import de.constellate.nitroapp.Main;
 import de.constellate.nitroapp.utils.Config;
+import de.constellate.nitroapp.utils.TransactionLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -65,6 +66,8 @@ public class PayCommand implements CommandExecutor {
 
                             player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1, 1);
                             recipient.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1, 1);
+
+                            TransactionLogger.logTransaction(player.getName(), player.getUniqueId(), Bukkit.getPlayer(recipient_uuid).getName(), recipient_uuid, Integer.parseInt(args[1]));
 
                             sender.sendMessage(Main.getPrefix() + "Sent " + ChatColor.GOLD + args[1] + " ⛃" + ChatColor.GRAY + " to " + ChatColor.GREEN + recipient.getDisplayName());
                             recipient.sendMessage(Main.getPrefix() + "Received " + ChatColor.GOLD + args[1] + " ⛃" + ChatColor.GRAY + " from " + player.getDisplayName());

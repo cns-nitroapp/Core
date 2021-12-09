@@ -25,8 +25,6 @@ public class VendorInventory {
                 .pageSize(36)
                 .create();
 
-
-
         CategoryInventory categoryInventory = new CategoryInventory();
 
         // Previous item
@@ -46,7 +44,6 @@ public class VendorInventory {
         gui.setItem(5, 9, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
 
         for(String key : sec.getKeys(false)){
-            System.out.println(category);
             if (config.getConfig().getString("item.vendor_value." + key + ".category").equals(category)) {
                 String name = config.getConfig().getString("item.vendor_value." + key + ".name");
                 int price = config.getConfig().getInt("item.vendor_value." + key + ".price");

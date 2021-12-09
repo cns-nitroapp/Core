@@ -7,6 +7,7 @@ import de.constellate.nitroapp.schedules.Lag;
 import de.constellate.nitroapp.schedules.Performance;
 import de.constellate.nitroapp.tablist.TablistManager;
 import de.constellate.nitroapp.utils.Config;
+import de.constellate.nitroapp.utils.GlobalBalance;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -121,6 +122,7 @@ public final class Main extends JavaPlugin {
         new BukkitRunnable() {
             public void run() {
                 Performance.getPerformance();
+                GlobalBalance.logData();
             }
         }.runTaskTimer(this, 0L, 6000L);
 
