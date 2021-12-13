@@ -35,7 +35,7 @@ public class SelectionInventory {
 
     private GuiItem getItem(Player player, String item, String name, int price, int amount, Gui gui) {
         InventoryManager inventoryManager = new InventoryManager();
-        return ItemBuilder.from(Material.getMaterial(item)).setName(ChatColor.GREEN + name + ChatColor.GRAY + " x" + amount).setLore(ChatColor.GOLD + Integer.toString(price*amount) + " ⛃").setAmount(amount).glow().asGuiItem(e -> inventoryManager.buyItem(player, new ItemStack(Material.getMaterial(item), amount), price, gui));
+        return ItemBuilder.from(Material.getMaterial(item)).setName(ChatColor.GREEN + name + ChatColor.GRAY + " x" + amount).setLore(ChatColor.GOLD + Integer.toString(price*amount) + " ⛃").setAmount(amount).glow().asGuiItem(e -> inventoryManager.buyItem(player, new ItemStack(Material.getMaterial(item), amount), price, gui, amount));
     }
 
 }

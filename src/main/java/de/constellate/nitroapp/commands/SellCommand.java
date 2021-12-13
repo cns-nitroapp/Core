@@ -2,10 +2,12 @@ package de.constellate.nitroapp.commands;
 
 import de.constellate.nitroapp.Main;
 import de.constellate.nitroapp.utils.Config;
+import de.constellate.nitroapp.utils.TransactionLogger;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -15,6 +17,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.UUID;
 
 public class SellCommand implements CommandExecutor {
 
@@ -41,6 +45,7 @@ public class SellCommand implements CommandExecutor {
                         BalanceCommand.setBalance(player.getUniqueId(), BalanceCommand.getBalance(player.getUniqueId()) + total);
                         player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1, 1);
                         sender.sendMessage(Main.getPrefix() + "Sold " + ChatColor.GREEN + amount + " " + item + ChatColor.GRAY + " for " + ChatColor.GOLD + total + " ⛃");
+                        TransactionLogger.logTransaction("Nitroapp", UUID.fromString("6e60018f-f59b-4148-b233-9055d3430051"), player.getName(), player.getUniqueId(), total);
                     } else {
                         sender.sendMessage(Main.getPrefix() + "Please hold the item you want to sell in your hand.");
                     }

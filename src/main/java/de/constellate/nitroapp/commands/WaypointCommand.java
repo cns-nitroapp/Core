@@ -35,18 +35,21 @@ public class WaypointCommand implements CommandExecutor {
             switch (args[0]) {
                 case "create": {
                     if (!(args[1] == null)) {
-                        int balance = BalanceCommand.getBalance(player.getUniqueId());
+                        if (!waypoint.WaypointExists(args[1])) {
+                            int balance = BalanceCommand.getBalance(player.getUniqueId());
 
-                        if (balance >= 500000) {
-                            waypoint.setWaypoint(player.getUniqueId(), args[1], player.getLocation());
-                            BalanceCommand.setBalance(player.getUniqueId(),BalanceCommand.getBalance(player.getUniqueId()) - 500000);
-                            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "Waypoint created" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.RED + "-500000 ⛃"));
-                            player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1, 1);
-                            player.sendMessage(Main.getPrefix() + "Waypoint " + ChatColor.GREEN + args[1] + ChatColor.GRAY + " has been created!");
+                            if (balance >= 500000) {
+                                waypoint.setWaypoint(player.getUniqueId(), args[1], player.getLocation());
+                                BalanceCommand.setBalance(player.getUniqueId(), BalanceCommand.getBalance(player.getUniqueId()) - 500000);
+                                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "Waypoint created" + ChatColor.DARK_GRAY + " ┃ " + ChatColor.RED + "-500000 ⛃"));
+                                player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1, 1);
+                                player.sendMessage(Main.getPrefix() + "Waypoint " + ChatColor.GREEN + args[1] + ChatColor.GRAY + " has been created!");
+                            } else {
+                                player.sendMessage(Main.getPrefix() + ChatColor.RED + "Insufficient funds.");
+                            }
                         } else {
-                            player.sendMessage(Main.getPrefix() + ChatColor.RED + "Insufficient funds.");
+                            player.sendMessage(Main.getPrefix() + ChatColor.RED + "Waypoint already exists.");
                         }
-
                         break;
                     } else {
                         sendUsage(sender);
