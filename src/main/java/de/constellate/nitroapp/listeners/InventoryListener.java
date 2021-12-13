@@ -25,7 +25,7 @@ public class InventoryListener implements Listener {
         Config config = Main.getInstance().getConfiguration();
         ConfigurationSection sec = config.getConfig().getConfigurationSection("item.vendor_value");
 
-        if (event.getRightClicked().getType() == EntityType.VILLAGER) {
+        if (event.getRightClicked().getType() == EntityType.VILLAGER && !event.getPlayer().isSneaking()) {
             event.setCancelled(true);
 
             CategoryInventory categoryInventory = new CategoryInventory();
