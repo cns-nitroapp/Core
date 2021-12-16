@@ -18,22 +18,27 @@ public class GlobalBalance {
     public static void logData() {
 
         Config config = Main.getInstance().getConfiguration();
-        ConfigurationSection sec = config.getConfig().getConfigurationSection("player.balance");
+        if (config.getConfig().contains("transaction_logger")) {
+            if (config.getConfig().getBoolean("transaction_logger")) {
+                ConfigurationSection sec = config.getConfig().getConfigurationSection("player.balance");
 
-        int total = 0;
-        int amount = 0;
+                int total = 0;
+                int amount = 0;
 
-        for(String key : sec.getKeys(false)){
-            total = total + config.getConfig().getInt("player.balance." + key);
-            amount++;
+                for (String key : sec.getKeys(false)) {
+                    total = total + config.getConfig().getInt("player.balance." + key);
+                    amount++;
+                }
+
+                JsonObject json = new JsonObject();
+                json.addProperty("total", total);
+                json.addProperty("average", total / amount);
+                json.addProperty("amount", amount);
+
+                API.call("/global", json);
+            }
         }
 
-        JsonObject json = new JsonObject();
-        json.addProperty("total", total);
-        json.addProperty("average", total / amount);
-        json.addProperty("amount", amount);
-
-        API.call("/global", json);
 
     }
 

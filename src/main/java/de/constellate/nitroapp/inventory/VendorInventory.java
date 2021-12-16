@@ -36,19 +36,14 @@ public class VendorInventory {
         // Next item
         gui.setItem(5, 7, ItemBuilder.from(Material.GREEN_DYE).setName(ChatColor.GREEN + "Next").setLore(ChatColor.GRAY + "Skip ahead to the next page").asGuiItem(e -> gui.next()) );
 
-        gui.setItem(5, 1, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
-        gui.setItem(5, 2, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
-        gui.setItem(5, 4, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
-        gui.setItem(5, 6, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
-        gui.setItem(5, 8, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
-        gui.setItem(5, 9, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
+        for (int i : new int[]{1, 2, 4, 6, 8, 9}) {
+            gui.setItem(5, i, ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
+        }
 
         for(String key : sec.getKeys(false)){
             if (config.getConfig().getString("item.vendor_value." + key + ".category").equals(category)) {
                 String name = config.getConfig().getString("item.vendor_value." + key + ".name");
                 int price = config.getConfig().getInt("item.vendor_value." + key + ".price");
-
-                System.out.println(key);
 
                 //gui.addItem(new GuiItem(Material.getMaterial(key)));
 

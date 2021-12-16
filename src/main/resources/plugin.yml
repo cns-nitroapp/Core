@@ -39,3 +39,9 @@ commands:
     permission: core.vendor
   back:
     description: Teleports you back to your last location.
+  logger:
+    permission: core.logger
+    aliases: [log]
+  inventory:
+    permission: core.inventory
+    aliases: [inv, invsee]

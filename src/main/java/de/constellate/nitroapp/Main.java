@@ -114,6 +114,8 @@ public final class Main extends JavaPlugin {
         getCommand("broadcast").setExecutor(new BroadcastCommand());
         getCommand("vendor").setExecutor(new VendorCommand());
         getCommand("back").setExecutor(new BackCommand());
+        getCommand("logger").setExecutor(new LoggerCommand());
+        getCommand("inventory").setExecutor(new InvseeCommand());
     }
 
     private void schedulerRegistration() {

@@ -66,7 +66,7 @@ public class TablistManager {
     }
 
     public static void setHeader(Player player) {
-        player.setPlayerListHeader(ChatColor.GREEN + "\n          » Nitroapp Remastered «          \n" + ChatColor.GRAY + "Welcome, " + Bukkit.getOnlinePlayers().iterator().next().getDisplayName() + "\n");
+        player.setPlayerListHeader(ChatColor.GREEN + "\n          » Nitroapp Remastered «          \n" + ChatColor.GRAY + "Welcome, " + player.getDisplayName() + "\n");
     }
 
 

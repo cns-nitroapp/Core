@@ -16,6 +16,7 @@ public class WaypointManager {
         config.getConfig().set("waypoints.waypoint." + name.toLowerCase() + ".y", location.getBlockY());
         config.getConfig().set("waypoints.waypoint." + name.toLowerCase() + ".z", location.getBlockZ());
         config.getConfig().set("waypoints.owner." + name.toLowerCase(), uuid.toString());
+        config.save();
     }
 
     /*public Object getWaypoint(String name) {

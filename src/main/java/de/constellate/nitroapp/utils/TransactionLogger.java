@@ -1,9 +1,7 @@
 package de.constellate.nitroapp.utils;
 import com.google.gson.JsonObject;
+import de.constellate.nitroapp.Main;
 
-import javax.net.ssl.HttpsURLConnection;
-import java.io.OutputStream;
-import java.net.URL;
 import java.util.UUID;
 
 public class TransactionLogger {
@@ -14,21 +12,31 @@ public class TransactionLogger {
         // POST
         // Content-Type: application/json
 
-        JsonObject json = new JsonObject();
-        JsonObject sender = new JsonObject();
-        JsonObject receiver = new JsonObject();
+        Config config = Main.getInstance().getConfiguration();
 
-        sender.addProperty("name", sender_name);
-        sender.addProperty("uuid", sender_uuid.toString());
+        if (config.getConfig().contains("server.transaction_logger")) {
+            if (config.getConfig().getBoolean("server.transaction_logger")) {
+                JsonObject json = new JsonObject();
+                JsonObject sender = new JsonObject();
+                JsonObject receiver = new JsonObject();
 
-        receiver.addProperty("name", receiver_name);
-        receiver.addProperty("uuid", receiver_uuid.toString());
+                sender.addProperty("name", sender_name);
+                sender.addProperty("uuid", sender_uuid.toString());
 
-        json.add("sender", sender);
-        json.add("receiver", receiver);
-        json.addProperty("amount", amount);
+                receiver.addProperty("name", receiver_name);
+                receiver.addProperty("uuid", receiver_uuid.toString());
 
-        API.call("/transactions", json);
+                json.add("sender", sender);
+                json.add("receiver", receiver);
+                json.addProperty("amount", amount);
+
+                API.call("/transactions", json);
+            } else {
+                System.out.println("Transaction logging disabled");
+            }
+        } else {
+            System.out.println("Transaction logging disabled");
+        }
 
     }
 
